@@ -67,6 +67,8 @@ namespace SpaceShooter
                 projectile.transform.rotation = Quaternion.identity;
                 projectile.SetActive(true);
             }
+
+            AudioManager.instance.Play("Shoot");
         }
 
         float RandomFiringRate()

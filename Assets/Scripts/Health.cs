@@ -27,6 +27,7 @@ namespace SpaceShooter
         void TakeDamage(int damage)
         {
             _health -= damage;
+            AudioManager.instance.Play("Damage");
 
             if (_health <= 0)
                 Die();
