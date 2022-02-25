@@ -7,8 +7,10 @@ namespace SpaceShooter
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager instance;
+
         public static event Action onSceneLoaded;
         public static event Action onSceneOver;
+        public static event Action onGameReset;
 
         Animator _anim;
         string _levelToLoad;
@@ -25,6 +27,16 @@ namespace SpaceShooter
         {
             Health.onPlayerDestroyed += LoadGameOverScreen;
             onSceneLoaded?.Invoke();
+            
+            CheckForRestart();
+        }
+
+        void CheckForRestart()
+        {
+            Scene currentScene = SceneManager.GetActiveScene();
+
+            if (currentScene.buildIndex == 1)
+                onGameReset?.Invoke();
         }
 
         void LoadGameOverScreen()

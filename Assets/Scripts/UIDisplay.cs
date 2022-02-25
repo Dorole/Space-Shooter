@@ -9,12 +9,10 @@ namespace SpaceShooter
         [SerializeField] Slider _healthSlider;
         [SerializeField] TextMeshProUGUI _scoreText;
 
-        ScoreKeeper _scoreKeeper;
         Health _playerHealth;
 
         private void Awake()
         {
-            _scoreKeeper = FindObjectOfType<ScoreKeeper>();
             _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
         }
 
@@ -22,10 +20,10 @@ namespace SpaceShooter
         {
             _healthSlider.maxValue = _playerHealth.PlayerHealth;
             UpdatePlayerHealth();
-            UpdateScore();
 
             _playerHealth.onObjectHit += UpdatePlayerHealth;
             Health.onEnemyKilled += UpdateScore;
+            LevelManager.onGameReset += UpdateScore;
         }
 
         void UpdatePlayerHealth()
@@ -35,7 +33,14 @@ namespace SpaceShooter
 
         void UpdateScore()
         {
-            _scoreText.text = _scoreKeeper.Score.ToString("000000000");
+            _scoreText.text = ScoreKeeper.instance.Score.ToString("000000000");
+        }
+
+        private void OnDisable()
+        {
+            _playerHealth.onObjectHit -= UpdatePlayerHealth;
+            Health.onEnemyKilled -= UpdateScore;
+            LevelManager.onGameReset -= UpdateScore;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace SpaceShooter
             #region Singleton
             if (instance != null)
             {
-                //instance.gameObject.SetActive(false);
+                gameObject.SetActive(false);
                 Destroy(gameObject);
             }
             else
@@ -33,8 +33,6 @@ namespace SpaceShooter
         {
             LevelManager.onSceneLoaded += FadeInLevelTheme;
             LevelManager.onSceneOver += FadeOutLevelTheme;
-
-            //unsubscribe where?? check what happens on scene change!
         }
 
         private void SoundSetup()
@@ -114,6 +112,12 @@ namespace SpaceShooter
         private void FadeOutLevelTheme()
         {
             FadeOut("Theme");
+        }
+
+        private void OnDisable()
+        {
+            LevelManager.onSceneLoaded -= FadeInLevelTheme;
+            LevelManager.onSceneOver -= FadeOutLevelTheme;
         }
     }
 }

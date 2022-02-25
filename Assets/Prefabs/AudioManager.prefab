@@ -52,21 +52,21 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Damage
     clip: {fileID: 8300000, guid: 3e177dc78c0ac9345a5e22071783bc6a, type: 3}
-    volume: 0.7
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Theme
     clip: {fileID: 0}
-    volume: 0.8
+    volume: 0.7
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Button
     clip: {fileID: 8300000, guid: dc0f6dc2f4bfa264f88ec1e3ef1e33c4, type: 3}
-    volume: 0.8
+    volume: 0.7
     pitch: 1
     loop: 0
     source: {fileID: 0}
   _fadeOutTime: 1
-  _fadeInTime: 1
+  _fadeInTime: 1.5
